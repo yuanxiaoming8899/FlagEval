@@ -1,95 +1,83 @@
-![FlagEval](logo.png)
-[简体中文](README_zh.md)
-
---------------------------------------------------------------------------------
-
-### Overview
-
-**FlagEval** is an open-source evaluation toolkit as well as an open platform for evaluation of large models. 
-
-FlagEval aims to cater to three principal evaluation subjects: foundational models, pre-training algorithms, and fine-tuning/compression algorithms. It encompasses four critical evaluation scenarios — Natural Language Processing (NLP), Computer Vision (CV), Audio, and Multimodal, alongside an abundant variety of downstream tasks. You can find more information on our official website [flageval.baai.ac.cn](https://flageval.baai.ac.cn/#/home). 
-
-We're committed to developing scientific, impartial, and clear benchmarks, methodologies, and tools. Our goal is to enable researchers to thoroughly evaluate the effectiveness of foundational models and training algorithms. In addition, we are exploring the use of AI techniques to enhance subjective assessments, increasing both the objectivity and efficiency of our evaluation processes.
-
-FlagEval open-source toolkit now contains follwing sub-projects.
-
-## 1. mCLIPEval
-
-[**mCLIPEval**](https://github.com/FlagOpen/FlagEval/tree/master/mCLIPEval) is a evaluation toolkit for vision-language models (such as CLIP, Contrastive Language–Image Pre-training).
-
-* Including Multilingual (12 languages) datasets and monolingual (English/Chinese) datasets.
-* Supporting for Zero-shot classification, Zero-shot retrieval and zeroshot composition tasks.
-* Adapted to [FlagAI](https://github.com/FlagAI-Open/FlagAI) pretrained models ([AltCLIP](https://github.com/FlagAI-Open/FlagAI/tree/master/examples/AltCLIP), [EVA-CLIP](https://github.com/FlagAI-Open/FlagAI/tree/master/examples/EVA_CLIP)), [OpenCLIP](https://github.com/mlfoundations/open_clip) pretrained models, [Chinese CLIP](https://github.com/OFA-Sys/Chinese-CLIP) models, [Multilingual CLIP](https://github.com/FreddeFrallan/Multilingual-CLIP) models, [Taiyi Series](https://fengshenbang-doc.readthedocs.io/zh/latest/docs/%E5%A4%AA%E4%B9%99%E7%B3%BB%E5%88%97/index.html) pretrained models, or customized models.
-* Data preparation from various resources, like [torchvision](https://pytorch.org/vision/stable/datasets.html), [huggingface](https://huggingface.co/datasets), [kaggle](https://www.kaggle.com/datasets), etc.
-* Visualization of evaluation results through leaderboard figures or tables, and detailed comparsions between two specific models.
-	
-### How to use
-
-Environment Preparation:
-
-* Pytorch version >= 1.8.0
-* Python version >= 3.8
-* For evaluating models on GPUs, you'll also need install CUDA and NCCL
-
-Step: 
-
-```shell
-git clone https://github.com/FlagOpen/FlagEval.git
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/FlagOpen/FlagEval/blob/master/logo.png"><img src="/FlagOpen/FlagEval/raw/master/logo.png" alt="标志评估" style="max-width: 100%;"></a>
+<a href="/FlagOpen/FlagEval/blob/master/README_zh.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">简体中文</font></font></a></p>
+<hr>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概述</font></font></h3><a id="user-content-overview" class="anchor" aria-label="永久链接：概述" href="#overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FlagEval</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是一个开源评估工具包，也是一个用于评估大型模型的开放平台。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FlagEval 旨在满足三个主要评估主题：基础模型、预训练算法和微调/压缩算法。它包含四个关键评估场景——自然语言处理 (NLP)、计算机视觉 (CV)、音频和多模式，以及丰富的下游任务。您可以在我们的官方网站</font></font><a href="https://flageval.baai.ac.cn/#/home" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">flageval.baai.ac.cn</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上找到更多信息。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们致力于开发科学、公正、明确的基准、方法和工具。我们的目标是使研究人员能够彻底评估基础模型和训练算法的有效性。此外，我们正在探索使用人工智能技术来增强主观评估，提高评估过程的客观性和效率。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FlagEval 开源工具包现在包含以下子项目。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.mCLIPEval</font></font></h2><a id="user-content-1-mclipeval" class="anchor" aria-label="永久链接：1.mCLIPEval" href="#1-mclipeval"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/FlagOpen/FlagEval/tree/master/mCLIPEval"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mCLIPEval</font></font></strong></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是视觉语言模型（例如 CLIP、对比语言-图像预训练）的评估工具包。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">包括多语言（12种语言）数据集和单语（英语/中文）数据集。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支持零样本分类、零样本检索和零样本合成任务。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">适配</font></font><a href="https://github.com/FlagAI-Open/FlagAI"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FlagAI</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预训练模型（</font></font><a href="https://github.com/FlagAI-Open/FlagAI/tree/master/examples/AltCLIP"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AltCLIP</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="https://github.com/FlagAI-Open/FlagAI/tree/master/examples/EVA_CLIP"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">EVA-CLIP</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）、</font></font><a href="https://github.com/mlfoundations/open_clip"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OpenCLIP</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预训练模型、</font></font><a href="https://github.com/OFA-Sys/Chinese-CLIP"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中文CLIP</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模型、</font></font><a href="https://github.com/FreddeFrallan/Multilingual-CLIP"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多语言CLIP</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模型、</font></font><a href="https://fengshenbang-doc.readthedocs.io/zh/latest/docs/%E5%A4%AA%E4%B9%99%E7%B3%BB%E5%88%97/index.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">太乙系列</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预训练模型或定制模型。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">来自各种资源的数据准备，例如</font></font><a href="https://pytorch.org/vision/stable/datasets.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">torchvision</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="https://huggingface.co/datasets" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Huggingface</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="https://www.kaggle.com/datasets" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kaggle</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">等。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过排行榜图或表格可视化评估结果，以及两个特定模型之间的详细比较。</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何使用</font></font></h3><a id="user-content-how-to-use" class="anchor" aria-label="永久链接： 如何使用" href="#how-to-use"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">环境准备：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pytorch 版本 &gt;= 1.8.0</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Python 版本 &gt;= 3.8</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要在 GPU 上评估模型，您还需要安装 CUDA 和 NCCL</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">步：</font></font></p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>git clone https://github.com/FlagOpen/FlagEval.git
+<span class="pl-c1">cd</span> FlagEval/mCLIPEval/
+pip install -r requirements.txt</pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="git clone https://github.com/FlagOpen/FlagEval.git
 cd FlagEval/mCLIPEval/
-pip install -r requirements.txt
-```
-Please refer to [mCLIPEval/README.md](https://github.com/FlagOpen/FlagEval/tree/master/mCLIPEval/README.md) for more details.
-
-
-## 2. ImageEval-prompt
-
-[ImageEval-prompt](https://github.com/FlagOpen/FlagEval/blob/master/imageEval/README.md) is a set of prompts that evaluate text-to-image (T2I) models at a fine-grained level, including entity, style and detail. By conducting comprehensive evaluations at a fine-grained level, researchers can better understand the strengths and limitations of T2I models, in order to further improve their performance.
-
-* Including 1,624 English prompts and 339 Chinese prompts.
-* Each prompt is annotated using "double-blind annotation & third-party arbitration" approach, divided into three dimensions: entities, styles, and details.
-	* Entity dimension includes five sub-dimensions: object, state, color, quantity, and position; 
-	* Style dimension includes two sub-dimensions: painting style and cultural style; 
-	* Detail dimension includes four sub-dimensions: hands, facial features, gender, and illogical knowledge.
-
-Please refer to [imageEval/README.md](https://github.com/FlagOpen/FlagEval/blob/master/imageEval/README.md) for more details.
-
-## 3. C-SEM
-
-C-SEM innovatively constructs various levels and difficulties of evaluation data to address the potential flaws and inadequacies of current large models. It examines the models' "thinking" process in understanding semantics, referencing human language cognition habits. The currently open-source version, C-SEM v1.0, includes four sub-evaluation items, assessing models' semantic understanding abilities at both the lexical and sentence levels, offering broad applicability for research comparison.
-
-The sub-evaluation items of C-SEM are:
-
-* Lexical Level Semantic Relationship Classification (LLSRC)
-* Sentence Level Semantic Relationship Classification (SLSRC)
-* Sentence Level Polysemous Words Classification (SLPWC)
-* Sentence Level Rhetoric Figure Classification (SLRFC).
-
-Future iterations of the C-SEM benchmark will continue to evolve, covering more semantic understanding-related knowledge and forming a multi-level semantic understanding evaluation system. Meanwhile, the 【FlagEval large model evaluation platform](https://flageval.baai.ac.cn/#/trending) will integrate the latest versions promptly to enhance the comprehensiveness of evaluating Chinese capabilities of large language models.
-
-
-Please refer to [csem/README.md](https://github.com/FlagOpen/FlagEval/blob/master/csem/README.md) for more details.
-
-
-## Contact us
-
-* For help and issues associated with FlagEval, or reporting a bug, please open a [GitHub Issue](https://github.com/FlagOpen/FlagEval/issues) or e-mail to flageval@baai.ac.cn. Let's build a better & stronger FlagEval together :)
-* <font color="Red">**We're hiring!**</font> If you are interested in working with us on foundation model evaluation, please contact flageval@baai.ac.cn.
-* <font color="Red">**Welcome to collaborate with FlagEval!**</font> New task or new dataset submissions are encouraged. If you are interested in contributiong new task or new dataset or new tool to FlagEval, please contact flageval@baai.ac.cn.
-
-
-## [License](/LICENSE)
-The majority of FlagEval is licensed under the [Apache 2.0 license](LICENSE), however portions of the project are available under separate license terms:
-
-* The usage of CLIP_benchmark is licensed under the [MIT license](https://github.com/LAION-AI/CLIP_benchmark/blob/main/LICENSE)
-* The usage of ImageNet1k datasets in under the [huggingface datasets license and ImageNet licenese](https://huggingface.co/datasets/imagenet-1k/blob/main/README.md#licensing-information)
-
-
-## Misc
-### &#8627; Stargazers, thank you for your support!
-[![Stargazers repo roster for @FlagOpen/FlagEval](https://reporoster.com/stars/FlagOpen/FlagEval)](https://github.com/FlagOpen/FlagEval/stargazers)
-
-### &#8627; Forkers, thank you for your support!
-[![Forkers repo roster for @FlagOpen/FlagEval](https://reporoster.com/forks/FlagOpen/FlagEval)](https://github.com/FlagOpen/FlagEval/network/members)
-
-
-#### If you find our work helpful, please consider to **star🌟** this repo. Thanks for your support!
+pip install -r requirements.txt" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><a href="https://github.com/FlagOpen/FlagEval/tree/master/mCLIPEval/README.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mCLIPEval/README.md</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解更多详细信息。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2. ImageEval-提示</font></font></h2><a id="user-content-2-imageeval-prompt" class="anchor" aria-label="永久链接：2. ImageEval-prompt" href="#2-imageeval-prompt"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/FlagOpen/FlagEval/blob/master/imageEval/README.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ImageEval-prompt</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是一组提示，用于在细粒度级别评估文本到图像 (T2I) 模型，包括实体、样式和细节。通过细粒度的综合评估，研究人员可以更好地了解T2I模型的优势和局限性，从而进一步提高其性能。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">其中英文提示1624条，中文提示339条。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">每个提示均采用“双盲标注+第三方仲裁”的方式进行标注，分为实体、样式、细节三个维度。
+</font></font><ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实体维度包括对象、状态、颜色、数量、位置五个子维度；</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">风格维度包括绘画风格和文化风格两个子维度；</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">细节维度包括四个子维度：手部、五官、性别、非逻辑知识。</font></font></li>
+</ul>
+</li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><a href="https://github.com/FlagOpen/FlagEval/blob/master/imageEval/README.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">imageEval/README.md</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解更多详细信息。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.扫描电镜</font></font></h2><a id="user-content-3-c-sem" class="anchor" aria-label="永久链接：3.C-SEM" href="#3-c-sem"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C-SEM创新性地构建了各种层次和难度的评估数据，以解决当前大型模型的潜在缺陷和不足。它参考人类语言认知习惯，检查模型在理解语义方面的“思维”过程。目前开源的C-SEM v1.0包含四个子评估项，评估模型在词汇和句子层面的语义理解能力，为研究比较提供了广泛的适用性。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C-SEM的分评价项目有：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">词汇级别语义关系分类（LLSRC）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">句子级语义关系分类（SLSRC）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">句子级多义词分类 (SLPWC)</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">句子级修辞格分类（SLRFC）。</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C-SEM基准的未来迭代将不断演进，涵盖更多语义理解相关知识，形成多层次的语义理解评估体系。同时，【FlagEval大模型评测平台】( </font></font><a href="https://flageval.baai.ac.cn/#/trending" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://flagval.baai.ac.cn/#/trending</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )将及时整合最新版本，增强大语言模型中文能力评测的全面性。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><a href="https://github.com/FlagOpen/FlagEval/blob/master/csem/README.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">csem/README.md</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解更多详细信息。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">联系我们</font></font></h2><a id="user-content-contact-us" class="anchor" aria-label="永久链接：联系我们" href="#contact-us"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如需与 FlagEval 相关的帮助和问题，或报告错误，请打开</font></font><a href="https://github.com/FlagOpen/FlagEval/issues"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub 问题</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或发送电子邮件至</font></font><a href="mailto:flageval@baai.ac.cn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">flageval@baai.ac.cn</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。让我们一起构建一个更好更强的 FlagEval :)</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们正在招聘！</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您有兴趣与我们合作进行基础模型评估，请联系</font></font><a href="mailto:flageval@baai.ac.cn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">flageval@baai.ac.cn</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">欢迎与FlagEval合作！</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">鼓励提交新任务或新数据集。如果您有兴趣为FlagEval贡献新任务、新数据集或新工具，请联系</font></font><a href="mailto:flageval@baai.ac.cn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">flageval@baai.ac.cn</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><a href="/FlagOpen/FlagEval/blob/master/LICENSE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执照</font></font></a></h2><a id="user-content-license" class="anchor" aria-label="永久链接：许可证" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FlagEval 的大部分内容均根据</font></font><a href="/FlagOpen/FlagEval/blob/master/LICENSE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache 2.0 许可证</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">获得许可，但该项目的部分内容可根据单独的许可条款使用：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CLIP_benchmark 的使用已获得</font></font><a href="https://github.com/LAION-AI/CLIP_benchmark/blob/main/LICENSE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MIT 许可</font></font></a></li>
+<li><font style="vertical-align: inherit;"><a href="https://huggingface.co/datasets/imagenet-1k/blob/main/README.md#licensing-information" rel="nofollow"><font style="vertical-align: inherit;">在Huggingface 数据集许可和 ImageNet 许可</font></a><font style="vertical-align: inherit;">下使用 ImageNet1k 数据集</font></font><a href="https://huggingface.co/datasets/imagenet-1k/blob/main/README.md#licensing-information" rel="nofollow"><font style="vertical-align: inherit;"></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">杂项</font></font></h2><a id="user-content-misc" class="anchor" aria-label="永久链接： 杂项" href="#misc"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">↳ 观星者，感谢您的支持！</font></font></h3><a id="user-content--stargazers-thank-you-for-your-support" class="anchor" aria-label="永久链接：↳观星者，感谢您的支持！" href="#-stargazers-thank-you-for-your-support"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/FlagOpen/FlagEval/stargazers"><img src="https://camo.githubusercontent.com/6773f2b36900f142fe99e2387d32195424c4403a1e49c0cc107a02403c88a0f7/68747470733a2f2f7265706f726f737465722e636f6d2f73746172732f466c61674f70656e2f466c61674576616c" alt="@FlagOpen/FlagEval 的 Stargazers 回购名册" data-canonical-src="https://reporoster.com/stars/FlagOpen/FlagEval" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">↳ 叉友们，感谢您的支持！</font></font></h3><a id="user-content--forkers-thank-you-for-your-support" class="anchor" aria-label="永久链接： ↳ Forkers，感谢您的支持！" href="#-forkers-thank-you-for-your-support"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/FlagOpen/FlagEval/network/members"><img src="https://camo.githubusercontent.com/588a90830348e4a50a44838205ebb8a6e51aab2145510c42d3bda833cbf7c945/68747470733a2f2f7265706f726f737465722e636f6d2f666f726b732f466c61674f70656e2f466c61674576616c" alt="@FlagOpen/FlagEval 的 Forkers 存储库名册" data-canonical-src="https://reporoster.com/forks/FlagOpen/FlagEval" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h4 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您发现我们的工作有帮助，请考虑为这个仓库</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">加注星标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。感谢您的支持！</font></font></h4><a id="user-content-if-you-find-our-work-helpful-please-consider-to-star-this-repo-thanks-for-your-support" class="anchor" aria-label="永久链接：如果您发现我们的工作有帮助，请考虑为这个仓库加星标🌟。感谢您的支持！" href="#if-you-find-our-work-helpful-please-consider-to-star-this-repo-thanks-for-your-support"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+</article></div>
